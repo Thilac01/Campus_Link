@@ -1,0 +1,2 @@
+[console_scripts]
+campuslink = campuslink.app.main:main

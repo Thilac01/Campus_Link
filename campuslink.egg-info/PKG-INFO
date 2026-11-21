@@ -1,0 +1,67 @@
+Metadata-Version: 2.4
+Name: campuslink
+Version: 0.1.0
+Summary: Local-first university communication and collaboration desktop application
+Author: CampusLink contributors
+License: MIT
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: PySide6<7,>=6.8
+Provides-Extra: dev
+Requires-Dist: pytest<9,>=8.3; extra == "dev"
+Requires-Dist: pytest-qt<5,>=4.4; extra == "dev"
+Requires-Dist: ruff<1,>=0.8; extra == "dev"
+Requires-Dist: mypy<2,>=1.13; extra == "dev"
+Dynamic: license-file
+
+# CampusLink
+
+CampusLink is a local-first university communication and collaboration desktop application.
+This repository currently contains **Phase 0 (design)** and **Phase 1 (desktop foundation)**.
+It is not production-ready and does not yet send data over a network.
+
+## Implemented
+
+- PySide6 three-column desktop shell with accessible light/dark solid-surface themes.
+- First-run local profile setup with clear unverified-identity language.
+- Atomic local settings, persistent window size, privacy-preserving defaults.
+- SQLite schema and migration ledger for planned product entities.
+- Structured JSON file logging.
+- Versioned, bounded, length-prefixed protocol framing abstraction.
+- Safe transfer destination path validation.
+- Unit tests for persistence, framing, settings, and path validation.
+
+All messaging, discovery, transfers, groups, screen sharing, remote assistance, location,
+voice, relay, installer, signing, and updates are planned and intentionally unavailable.
+
+## Run on Windows
+
+Use Python 3.11 or newer. From PowerShell:
+
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+campuslink
+```
+
+If `py -3.12` is unavailable, use a locally installed supported Python, for example
+`python -m venv .venv`. Application data is stored in `%LOCALAPPDATA%\CampusLink`.
+For isolated local instances, set `CAMPUSLINK_DATA_DIR` before launching each process.
+
+```powershell
+$env:CAMPUSLINK_DATA_DIR = "$PWD\.runtime\user-a"
+campuslink
+```
+
+Run tests with `pytest`. See [Developer Guide](docs/DEVELOPER_GUIDE.md) and
+[Testing](docs/TESTING.md).
+
+## Status
+
+Version 0.1.0. Phase 1 acceptance is based on automated tests and a manual UI check on
+Windows after dependencies are installed. No benchmark, security audit, installer test,
+or clean-machine validation has yet been claimed.
+
